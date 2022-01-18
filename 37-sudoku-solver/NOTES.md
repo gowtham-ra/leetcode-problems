@@ -1,0 +1,1 @@
+* LC solution has lot of useful tricks in python.
