@@ -1,13 +1,9 @@
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
-        global_sum = local_sum = float('-inf')
+        max_sum = cur_sum = float('-inf')
         
         for num in nums:
-            local_sum = max(local_sum + num, num)
-            global_sum = max(local_sum, global_sum)
+            cur_sum = max(cur_sum + num, num)            
+            max_sum = max(cur_sum, max_sum)
         
-        return global_sum
-        
-        
-        
-        
+        return max_sum
