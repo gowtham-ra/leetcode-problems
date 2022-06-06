@@ -1,23 +1,22 @@
+from functools import reduce
+
 class Solution:
     def longestCommonPrefix(self, strs: List[str]) -> str:
-        minlength = float('inf')
-        prefix = ""
-        done = False
+        output = ""
+        max_length = len(reduce(lambda x, y : x if len(x) > len(y) else y, strs))
+        i = 0
         
-        for word in strs:
-            minlength = min(minlength, len(word))
+        while i < max_length:            
+            for j in range(len(strs)-1):
+                if i == len(strs[j]) or i == len(strs[j+1]):
+                    return output
+                
+                if strs[j][i] != strs[j+1][i]:
+                    return output
             
-        for idx in range(minlength):
-            for i in range(len(strs)-1):
-                if strs[i][idx] != strs[i+1][idx]:
-                    done = True
-                    break
-            else:
-                prefix += strs[0][idx]
-            
-            if done:
-                break
+            output += strs[0][i]
+            i += 1
         
-        return prefix
+        return output
         
         
