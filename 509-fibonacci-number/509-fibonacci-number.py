@@ -1,14 +1,11 @@
 class Solution:
+    cache = dict()
+    
     def fib(self, n: int) -> int:
-        memo = [-1] * (n+1)
+        if n <= 1:
+            return n
         
-        def fibo(n):
-            if n <= 1:
-                return n
-            
-            if memo[n] == -1:
-                memo[n] = fibo(n-1) + fibo(n-2)
-            
-            return memo[n]
+        if n not in self.cache:
+            self.cache[n] = self.fib(n-1) + self.fib(n-2)
+        return self.cache[n]
         
-        return fibo(n)
